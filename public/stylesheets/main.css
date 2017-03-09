@@ -1,0 +1,135 @@
+html {
+    background: #eee;
+}
+
+body{
+	background-image: url(../images/bg.jpg);
+	background-size:cover;
+
+	background-repeat: no-repeat;
+}
+
+header h1 {
+    padding: 0.4em 1.1em;
+    color: white;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+#logincheck{
+	float:right;
+	margin: 5px;
+	z-index: 100;
+	width: auto;
+	display:block;
+	font-size:6em;
+
+}
+#logincheck a:hover{
+	text-decoration:underline;
+}
+
+#opttxt{
+	font-family: 'Maiden Orange', cursive;
+	color: maroon;
+	font-size: 3em;
+}
+.logo{
+	color: maroon;
+	font-family: 'Vollkorn', serif;
+	letter-spacing: 2px;
+	font-size: 5em;
+   margin-bottom: 35px;
+   margin-right:0;
+   padding-right:10%;
+   position:relative;
+   width:auto;
+   height:100%;
+   
+}
+.topbar{
+	height:10em;
+	width:auto;
+	float:none;
+}
+
+.topbar a:link{
+		text-decoration: none;
+		height:100%;
+   }
+
+section#main {
+    position: relative;
+    padding: 5em 2em;
+    min-height: 600px;
+	clear:both;
+} 
+
+section#main .topRight {
+    position: absolute;
+    right: 20px;
+    top: 70px;
+}
+
+table.outfits em {
+    color: #aaa;
+}
+
+table.outfits .col3, table.outfits .col4 {
+    width: 10%;
+    min-width: 100px;
+}
+
+table.outfits .col5 {
+    width: 30%;
+    min-width: 300px;
+}
+
+
+
+#tab{
+	background-color: #A1B0B6;
+}
+
+#tab.tr.hover{
+
+}
+
+table.outfits .header a {
+}
+
+.form-control{
+	margin-bottom: 4px;
+}
+
+#actions {
+    position: relative;
+}
+
+#actions #add {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#backg{
+	background-color: #A1B0B6;
+	width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+#pagination {
+    position: relative;
+}
+
+#pagination ul {
+    position: absolute;
+    right: 0;
+}
+
+#pagination ul .current a {
+    color: #666;
+}
+
+

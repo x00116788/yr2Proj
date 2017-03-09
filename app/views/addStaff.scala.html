@@ -1,0 +1,30 @@
+@(addStaffForm: Form[models.Staff], user: models.User)
+
+@import helper._
+
+@main("Add Staff", user){
+	<div class="col-md-4">
+		@form(action = routes.AdminCtrl.addStaffSubmit(), 'class -> "form-horizontal", 'role->"form"){
+		<div class="holder">	
+			<div class="add">		
+				
+				<h3 id="opttxt">Staff Information</h3>
+					
+					@helper.inputText(addStaffForm("name"),'_label -> "Name",'class -> "form-control")
+					@helper.inputText(addStaffForm("email"),'_label -> "Email",'class -> "form-control",'type -> "email")	
+					@helper.inputText(addStaffForm("password"),'_label -> "Password",'class -> "form-control",'type -> "password")
+						<br>
+				
+				<br>
+				<div class="actions">
+				
+					<input type="submit" value="Add Staff" class="btn btn-primary">
+					
+					<a href="@routes.Application.options()" <button class="btn btn-primary">Cancel</button></a>
+
+				</div>		
+			</div><!--add-item-->	
+		</div>
+	</div>
+	}
+}

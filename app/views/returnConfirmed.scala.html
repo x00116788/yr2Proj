@@ -1,0 +1,30 @@
+@(item: models.shopping.OrderItem ,user: models.User)
+
+@import play.api.Play.resource
+@import play.api.Play.current
+@import models.shopping._
+@import models.Outfit
+
+
+<!-- Pass page title and user on to main -->
+@main("Return Confirmation", user) {
+	<div class="row col-md-12">
+	<div class="col-md-12" id= "backg">
+		<p id="opttxt">Confirmation</p>
+		<p>
+		<h3>Please confirm return of the following outfit.</h3>
+		</p>
+		
+		<p><strong>Outfit ID: @item.outfit.id</strong></p>
+
+		<p><strong>Hired by: @item.order.customer.firstname @item.order.customer.lastname</strong></p>		
+		<p><strong>Early or late Return: @if(item.isEarly){Outfit returned Early}else{Outfit returned late}</strong></p>
+		
+		<p class="text-right">
+                    <a href="@routes.ShoppingCtrl.calcRefund(item.id)" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-euro"></span> Confirm Return</a>
+                </p>
+	</div>
+	
+</div>
+}

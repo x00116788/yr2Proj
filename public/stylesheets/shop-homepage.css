@@ -1,0 +1,150 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding: 100px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+#frontpg{
+	background-image: url(../images/frontbg.jpg);
+	background-size:cover;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	max-height: auto;
+	width: auto;
+}
+#fronttxt{
+	font-family: 'Maiden Orange', cursive;
+	padding: 4em;
+	padding-top: 2em;
+	padding-bottom:2em;
+	color: maroon;
+	font-size: 3em;
+}
+
+#loginrow{
+	padding: 4em;
+	padding-top: 2em;
+	padding-bottom:2em;
+	padding-left:20em;
+	
+}
+#loginbutton{
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+.homebtn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius:40px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 5em;
+  padding: 14px 36px 14px 36px;
+  width: 7em;
+  vertical-align: middle;
+  text-decoration: none;
+  text-transform: uppercase;
+text-align: center;
+
+}
+
+.homebtn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.homebtn:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+   
+   .homebtn:a{
+       display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 1em 2.5em;
+    
+    border-width: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 55%;
+	color: white;
+    line-height: 1em;
+    font-weight: normal;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: normal;
+   }
+   
+ #optbtn{
+		margin: 1em 0em 1em 0em;
+		border-radius: 15px;
+		padding: 1em 0em 1em 0em;;
+   }
+
+footer {
+    margin: 50px 0;
+}

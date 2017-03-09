@@ -1,0 +1,26 @@
+@(addCustomerForm: Form[models.Customer], user: models.User)
+
+@import helper._
+
+@main("New Customer",user) {
+	
+	<h2 id="opttxt">Add new customer</h2>
+	
+	@form(action = routes.CustomerCtrl.addCustomerSubmit(), 'class -> "form-horizontal", 'role->"form") {
+	
+		@helper.inputText(addCustomerForm("firstname"), '_label ->"Firstname", 'class -> "form-control")
+		@helper.inputText(addCustomerForm("lastname"), '_label ->"Lastname", 'class -> "form-control")
+		@helper.inputText(addCustomerForm("address"), '_label ->"Address", 'class -> "form-control")
+		@helper.inputText(addCustomerForm("street"), '_label ->"Street", 'class -> "form-control")
+		@helper.inputText(addCustomerForm("city"), '_label ->"City", 'class -> "form-control")
+		@helper.inputText(addCustomerForm("county"), '_label ->"County", 'class -> "form-control")
+		@helper.inputText(addCustomerForm("email"), '_label ->"Email", 'class -> "form-control",'type -> "email")
+		@helper.inputText(addCustomerForm("phone_number"), '_label ->"Phone_number", 'class -> "form-control", 'type -> "number")
+		
+	<div class="actions">
+		<input type="submit" value="Add Customer" class=" btn btn-primary"> or 
+            <a href="@routes.Application.options()" class="btn btn-warning">Cancel</a> 
+	</div>
+	}
+
+}

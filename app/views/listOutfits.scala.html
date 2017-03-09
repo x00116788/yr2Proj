@@ -1,0 +1,86 @@
+@(categories: List[models.Category], outfits: List[models.Outfit], user: models.User)
+
+<!-- Pass page title and user on to main -->
+@main("List Outfits",user){
+
+
+<div class="row">
+
+  <div class="col-md-3">
+      <div class="list-group">
+				<!-- Start of For loop - For each c in categories add a link -->
+				<a href="@routes.OutfitCtrl.listOutfits(0)" class="list-group-item active">All categories</a>
+			@for(c <- categories) {	
+          <a href="@routes.OutfitCtrl.listOutfits(c.id)" class="list-group-item">@c.name</a>
+				}
+      </div>
+  </div>
+
+	<div class="col-md-9">
+		@if(flash.containsKey("success")) {
+			  <div class="alert alert-success">
+			      @flash.get("success")
+			  </div>
+		} 
+
+		<table class="table table-bordered table-hover table-condensed" id="tab">
+			<thead>
+			<!-- The header row-->
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Category</th>
+				<th>Size</th>
+				<th>Price</th>
+				<th>Availability</th>
+
+			</tr>
+			</thead>
+			<tbody>
+				<!-- Start of For loop - For each p in outfits add a row -->
+				@for(p <- outfits) {
+				<tr>
+					<!-- Display each outfit field value in a column -->
+					<td>@p.id</td>
+					<td>@p.colour</td>
+					<td>@p.category.name</td>
+					<td>@p.size</td>
+					<td>@p.price</td>
+					<td>@if(p.available != true){
+					Not Available 
+					}else{
+					Available}</td>
+
+					<!-- Edit outfit button -->
+				@if(user.getUserType() != "staff") {
+					<td>
+						<a href="@routes.OutfitCtrl.updateOutfit(p.id)" class="btn-xs btn-danger">
+						<span class="glyphicon glyphicon-pencil"></span></a>
+						
+						<a href="@routes.OutfitCtrl.delete(p.id)" class="btn-xs btn-danger" 
+						onclick="return confirmDel();">
+						<span class="glyphicon glyphicon-trash"></span></a>
+					</td>
+					
+				</tr>
+				}
+				}<!-- End of For loop -->
+			</tbody>
+		</table>
+		
+		<div>
+			<a href="@routes.OutfitCtrl.create()">
+				<button class="btn btn-primary">Add an Outfit</button>
+			</a>
+		</div>
+		
+	</div>
+</div>
+
+<script>
+	// JavaScript function returns true if user clicks yes, otherwise, false
+	function confirmDel() {
+		return confirm('Are you sure?');
+	}
+</script>
+}

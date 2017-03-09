@@ -1,0 +1,81 @@
+@(user: models.User, order: models.shopping.ShopOrder)
+
+@import play.api.Play.resource
+@import play.api.Play.current
+@import models.shopping._
+@import models.Outfit
+
+
+<!-- Pass page title and user on to main -->
+@main("Order Confirmation", user) {
+<div class="row col-md-12">
+	<div class="col-md-12" id= "backg">
+		<p id="opttxt">Reciept</p>
+		<p>
+		<h3>Your Order has been succesfully placed.</h3>
+		</p>
+		<p id="opttxt">Customer Details:</p>
+		<p><strong>Name: @order.customer.firstname @order.customer.lastname</strong></p>
+
+		<p><strong>Delivery Address: @order.customer.address, @order.customer.street, @order.customer.city, @order.customer.county </strong></p>
+		<p><strong>Phone Number: @order.customer.phone_number </strong></p>		
+		<p><strong>Email: @order.customer.email</strong></p>
+		
+		<p id="opttxt">Order Details:</p>
+
+		<p><strong>Order ID: @order.id</strong></p>
+		<p><strong>Order Total: &euro; @("%.2f".format(order.getOrderTotal()))</strong></p>
+		<br>
+		<p id="orderdate"><strong>Order Date: @order.orderDate</strong></p>
+		<br>
+		<p id="returndate"><strong>Return Date: @order.dueDate</strong></p>
+		<p><strong>You were served by : @order.user.name</strong></p>
+		<p></p>
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-md-12">
+		@if(flash.containsKey("success")) {
+		  <div class="alert alert-success">
+			  @flash.get("success")
+		  </div>
+		} 
+
+		<table class="table table-bordered table-hover table-condensed" id="tab">
+			<thead>
+				<!-- The header row-->
+				<tr>
+					<th>Id</th>
+					<th>Colour</th>
+					<th>Category</th>
+					<th>Price</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+                @if(order != null) {
+                    <!-- Start of For loop - For each p in products add a row -->
+                    @for(i <- order.items) {
+                    <tr>
+                        <td>@i.outfit.id</td>
+                        <td>@i.outfit.colour</td>
+						<td>@i.outfit.category.name</td>
+                        <td>&euro; @("%.2f".format(i.getItemTotal()))</td>		
+                    </tr>
+                    }<!-- End of For loop -->
+              }
+			  <tr>
+				
+			  </tr>
+			</tbody>
+		</table>
+        <div class="row">
+              
+        </div>
+        </div>
+	</div>
+		<a href="@routes.Application.options()" <button class="btn btn-primary">Close</button></a>
+
+}

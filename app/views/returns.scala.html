@@ -1,0 +1,81 @@
+@(customers: List[models.Customer], items: List[models.shopping.ShopOrder], user: models.User)
+
+@import play.api.Play.resource
+@import play.api.Play.current
+@import models.shopping._
+@import models.Outfit
+
+<!-- Pass page title and user on to main -->
+@main("Orders", user) {
+
+<div class="row">
+
+  <div class="col-md-2">
+      <div class="list-group">
+				<!-- Start of For loop - For each c in categories add a link -->
+				<a href="@routes.ShoppingCtrl.returns(0)" class="list-group-item active">All Orders</a>
+			@for(s <- customers) {
+				@for(t <- s.shopOrders) {
+					@for(b <- t.items){
+					@if(b.returnDate == null){
+						<a href="@routes.ShoppingCtrl.returns(s.id)" class="list-group-item">@s.firstname @s.lastname</a>
+					}
+					}
+				}
+			}
+      </div>
+  </div>
+
+	<div class="col-md-10">
+		@if(flash.containsKey("success")) {
+			  <div class="alert alert-success">
+			      @flash.get("success")
+			  </div>
+		} 
+
+		<table class="table table-bordered table-hover table-condensed" id="tab">
+			<thead>
+			<!-- The header row-->
+			<tr>
+				<th>Order ID</th>
+				<th>Customer</th>
+				<th>Order Date</th>
+				<th>Due Date</th>
+				<th>Outfit ID</th>
+				<th>Category</th>
+				<th>Deposit</th>
+				<th>Return</th>
+				<th>Refund Due</th>
+
+			</tr>
+			</thead>
+			<tbody>
+				<!-- Start of For loop - For each p in outfits add a row -->
+				@for(s <- items) {
+					@for(b <- s.items){
+					@if(b.returnDate == null){
+					<tr>
+						<!-- Display each outfit field value in a column -->
+						<td>@s.id</td>
+						<td>@s.customer.firstname @s.customer.lastname</td>
+						<td>@s.orderDate</td>
+						<td>@s.dueDate</td>
+						<td>@b.outfit.id</td>
+						<td>@b.outfit.category.id</td>
+						<td>@b.deposit</td>
+						<td><a href="@routes.ShoppingCtrl.returnOutfit(b.id)" class="btn-xs btn-danger">
+							<span class="glyphicon glyphicon-pencil"></span></a>  </td>
+						<td>@b.getRefund()</td>
+						
+					</tr>}
+					}
+				}<!-- End of For loop -->
+			</tbody>
+		</table>
+		
+		
+	</div>
+</div>
+	<a href="@routes.Application.options()" <button class="btn btn-primary">Cancel</button></a>
+
+}

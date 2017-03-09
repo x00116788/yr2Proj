@@ -1,0 +1,30 @@
+@(addManagerForm: Form[models.Manager], user: models.User)
+
+@import helper._
+
+@main("Add Manager", user){
+	<div class="col-md-4">
+		@form(action = routes.AdminCtrl.addManagerSubmit(), 'class -> "form-horizontal", 'role->"form"){
+		<div class="holder">	
+			<div class="add">		
+				
+				<h3 id="opttxt">Manager Information</h3>
+					
+					@helper.inputText(addManagerForm("name"),'_label -> "Name",'class -> "form-control")
+					@helper.inputText(addManagerForm("email"),'_label -> "Email",'class -> "form-control", 'type -> "email")	
+					@helper.inputText(addManagerForm("password"),'_label -> "Password",'class -> "form-control", 'type -> "password")
+						<br>
+				
+				<br>
+				<div class="actions">
+				
+					<input type="submit" value="Add Manager" class="btn btn-primary">
+					
+					<a href="@routes.Application.options()" <button class="btn btn-primary">Cancel</button></a>
+
+				</div>		
+			</div><!--add-item-->	
+		</div>
+	</div>
+	}
+}

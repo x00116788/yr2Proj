@@ -1,0 +1,55 @@
+@(users: List[models.User], user: models.User)
+
+@main("List Users",user){
+
+	@if(flash.containsKey("success")){
+		<div class="alert-message warning">
+			@flash.get("success")
+		</div>
+		}
+<table class="table table-bordered table-hover table-condensed" id="tab">
+	<thead>
+	<!-- The header row-->
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Role</th>		
+	</tr>
+	</thead>
+	<tbody>
+		<!-- Customer row(s) -->
+		@for(u <- users) {
+		<tr>
+			<td>@u.name</td>
+			<td>@u.email</td>
+			<td>@u.getUserType()</td>
+			<td>
+			@if(user.getUserType() == "admin") {
+				<a href="@routes.AdminCtrl.updateUser(u.email)"
+class="btn-xs btn-danger" onclick="return confirmUpdate();"><span class="glyphicon
+glyphicon-pencil"></span></a>
+			
+				<a href="@routes.AdminCtrl.deleteUser(u.email)"
+class="btn-xs btn-danger" onclick="return confirmDel();"><span class="glyphicon
+glyphicon-trash"></span></a>	
+			
+			</td> }
+		</tr>
+		}
+	</tbody>
+</table>
+
+<a href="@routes.Application.options()" <button class="btn btn-primary">Cancel</button></a>
+} 		
+
+<script>
+	function confirmUpdate() {
+		return confirm('Are you sure?');
+	}
+</script>
+
+<script>
+	function confirmDel() {
+		return confirm('Are you sure?');
+	}
+</script>

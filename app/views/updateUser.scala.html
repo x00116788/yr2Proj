@@ -1,0 +1,27 @@
+@(id: String, updateUserForm: Form[models.User], user: models.User)
+
+@import helper._
+@main("Update User",user){
+
+<h3 id="opttxt">Update User</h3>
+
+@form(action = routes.AdminCtrl.updateUserSubmit(id)) {
+<!-- Build the form, adding an input for each field -->
+<!-- Note the label parameter -->
+
+	@helper.inputText(updateUserForm("name"), '_label ->"Name", 'class -> "form-control")
+	@helper.inputText(updateUserForm("email"), '_label ->"Email", 'class -> "form-control",'type -> "email")
+	@helper.inputText(updateUserForm("password"), '_label ->"Password", 'class -> "form-control",'type -> "password")
+
+
+		<!-- Add a submit button -->
+		<div class="actions">
+		<input type="submit" value="save" class="btn btn-primary">		
+			<a href="@routes.CustomerCtrl.listUsers()" <button class="btn btn-warning" role="button">Cancel</button></a>	
+			</div>
+	</div>
+		
+		}
+}	
+	
+ 

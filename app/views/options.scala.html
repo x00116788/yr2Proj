@@ -1,0 +1,61 @@
+@(user: models.User)
+
+@main("Select",user) {
+    
+	<div class="container">
+	  <div class="row">
+		<h2 id="opttxt">Select Functionality</h2>
+	  </div>
+	  <div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			
+			<a href="@routes.CustomerCtrl.addCustomer()">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">Add Customer</button>
+			</a>
+			
+			<a href="@routes.CustomerCtrl.listCustomer()">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">View Customers</button>
+			</a>
+			
+			<a href="@routes.OutfitCtrl.listOutfits(0)">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">List All Outfits</button>
+			</a>
+			
+			<a href="@routes.OutfitCtrl.create">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">Add an Outfit</button>
+			</a>
+			
+			<a href="@routes.RentalCtrl.rentalCustomer()">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">Start Rental</button>
+			</a>
+			<a href="@routes.ShoppingCtrl.listOrders(0)">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">View Orders</button>
+			</a>
+			<a href="@routes.ShoppingCtrl.returns(0)">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">Process Returns</button>
+			</a>
+			@if(user.getUserType() == "admin") {
+
+			<a href="@routes.AdminCtrl.addStaff()">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">Add Staff</button>
+			</a>
+			<a href="@routes.AdminCtrl.addManager()">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">Add Manager</button>
+			</a>
+			}
+			@if(user.getUserType() != "staff") {
+
+			<a href="@routes.CustomerCtrl.listUsers()">
+				<button id="optbtn" type= "button" class="btn btn-block btn-info">View Users</button>
+			</a>
+			}
+		</div>
+	<div class="col-md-3">
+	</div>
+
+	</div>
+</div>
+}
+
+    

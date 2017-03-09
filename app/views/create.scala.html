@@ -1,0 +1,37 @@
+@(addOutfitForm: Form[models.Outfit], user: models.User)
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.f) } 
+
+@main("Add Outfit",user) {
+    
+    <h1 id="opttxt">Add an outfit</h1>
+    
+    @form(action = routes.OutfitCtrl.save(), 'class -> "form-horizontal", 'role->"form") {
+        
+        <fieldset>
+        
+			@helper.inputText(addOutfitForm("colour"), '_label -> "Colour",'class -> "form-control")
+			@helper.inputText(addOutfitForm("size"), '_label -> "Size",'class -> "form-control", 'type -> "number")
+			@helper.select(
+				addOutfitForm("category.id"), 
+				options(Category.options), 
+				'_label -> "Category", '_default -> "-- Choose a category --",
+				'_showConstraints -> false, 'class -> "form-control"
+				)
+			@helper.inputText(addOutfitForm("price"), '_label -> "Price",'class -> "form-control", 'type -> "number")
+
+            
+            
+
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" value="Create this outfit" class="btn btn-primary"> or 
+            <a href="@routes.Application.options()" class="btn btn-warning">Cancel</a> 
+        </div>
+        
+    }
+    
+}

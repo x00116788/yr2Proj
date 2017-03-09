@@ -1,0 +1,51 @@
+@(customer: List[models.Customer], user: models.User)
+
+@main("List Customer",user){
+
+	@if(flash.containsKey("success")){
+		<div class="alert-message warning">
+			@flash.get("success")
+		</div>
+		}
+<div class="row">
+	<div class="col-md-3">
+		<table class="table table-bordered table-hover table-condensed" id="tab">
+			<thead>
+			<!-- The header row-->
+			<tr>	
+				<th>ID</th>
+				<th>FirstName</th>
+				<th>LastName</th>		
+				<th>Address</th>
+				<th>Street</th>
+				<th>Email</th>
+				<th>Phone_number</th>		
+			</tr>
+			</thead>
+			<tbody>
+				<!-- Customer row(s) -->
+				@for(c <- customer) {
+				<tr>
+					<td>@c.id</td>
+					<td>@c.firstname</td>
+					<td>@c.lastname</td>
+					<td>@c.address</td>
+					<td>@c.street</td>
+					<td>@c.email</td>
+					<td>@c.phone_number</td>
+					<td>
+						<a href="@routes.ShoppingCtrl.addBasketCustomer(c.id)"><button id="rentbtn" type= "button" class="btn btn-block btn-info">Rent</button>
+					</a>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+<div>
+	<a href="@routes.CustomerCtrl.addCustomer()" <button class="btn btn-primary">Add new Customer</button></a>
+	
+	<a href="@routes.Application.options()" <button class="btn btn-primary">Cancel</button></a>
+</div>
+} 		

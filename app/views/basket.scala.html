@@ -1,0 +1,101 @@
+@(user: models.User)
+
+@import play.api.Play.resource
+@import play.api.Play.current
+@import models.shopping._
+@import models.Outfit
+
+<!-- Pass page title and user on to main -->
+@main("Basket",user){
+
+
+<div class="row">
+
+	<div class="col-md-9">
+		@if(flash.containsKey("success")) {
+			  <div class="alert alert-success">
+			      @flash.get("success")
+			  </div>
+		} 
+
+		
+		<table class="table table-bordered table-hover table-condensed" id="tab">
+			<thead>
+			<!-- The header row-->
+			<tr>
+				<th>Colour</th>
+				<th>Category</th>
+				<th>Size</th>
+				<th>Price</th>
+				<th>Deposit</th>
+				<th>remove</th>
+			</tr>
+			</thead>
+			<tbody>
+                @if(user.basket != null) {
+                    <!-- Start of For loop - For each p in products add a row -->
+                    @for(i <- user.basket.basketItems) {
+                    <tr>
+                        <td>@i.outfit.colour</td>
+                        <td>@i.outfit.category.name</td>
+                        <td>@i.outfit.size</td>					
+                        <td>&euro; @("%.2f".format(i.price))</td>
+						<td>&euro; @i.deposit</td>
+                        <td><a href="@routes.ShoppingCtrl.removeOne(i.id)"><span class="glyphicon glyphicon-minus-sign"></span></a></td>	
+                    </tr>
+                    }<!-- End of For loop -->
+              }
+			</tbody>
+		</table>
+        <div class="row">
+            <div class="col-md-12">
+				<a href="@routes.RentalCtrl.rental(0)" <button class="btn btn-primary">Add more items</button></a>
+                <p class="text-right"><strong>Basket Total: &euro; @("%.2f".format(user.basket.getBasketTotal()))</strong></p>
+            </div>  
+        </div>
+        
+	</div>
+	
+			<fieldset>
+                <legend>Payment Form</legend>
+			    <div class="row-form">
+						<label for="amount">Amount: &euro; @("%.2f".format(user.basket.getBasketTotal()))</label>
+					<form role="form">
+				<div class="form-group">
+				  <label for="sel1">Payment method</label>
+				  <select class="form-control" id="sel1">
+					<option>Cash</option>
+					<option>Credit card</option>
+				
+				  </select>
+				  <br>
+			</div>
+    
+			    </div>			    
+			    	
+			</form>
+              </fieldset>
+
+			  <div class="row">
+            <div class="col-md-6">
+                <p class="text-right">
+                    <a href="@routes.ShoppingCtrl.emptyBasket()" class="btn btn-danger btn-sm" onclick="return confirmDel();">
+                    <span class="glyphicon glyphicon-trash"></span> Empty Basket</a>
+						<a href="@routes.Application.options()" <button class="btn btn-primary">Cancel</button></a>
+
+                </p>
+            </div>  
+            <div class="col-md-6">
+                <p class="text-right">
+                    <a href="@routes.ShoppingCtrl.placeOrder()" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-euro"></span> Place Order</a>
+                </p>
+            </div>  
+        </div>	
+<script>
+	// JavaScript function returns true if user clicks yes, otherwise, false
+	function confirmDel() {
+		return confirm('Are you sure?');
+	}
+</script>
+}

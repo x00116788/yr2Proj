@@ -1,0 +1,20 @@
+@(user: models.User)
+
+@main("Home",user){
+	<body id="frontpg">
+	
+		<div class="row">
+			<p id="fronttxt">@if(user != null){
+				Click Options To Continue }else{
+				Please Log In To Continue}
+			</p> 
+		</div>
+		<div class= "row" id="loginrow">
+			@if(user != null){
+				<a href="@routes.Application.options()" class="btn btn-primary btn-lg" id="loginbutton">Options</a> 							
+			}else{
+				<a href="@routes.LoginCtrl.login()" class="btn btn-primary btn-lg" id="loginbutton">Login</a> 			
+			}
+		</div>
+	</body>
+}

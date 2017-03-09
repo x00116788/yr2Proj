@@ -1,0 +1,31 @@
+@(id: Long, updateCustomerForm: Form[models.Customer], user: models.User)
+
+@import helper._
+@main("Update Customer",user){
+
+<h3 id="opttxt">Update Customer</h3>
+
+@form(action = routes.CustomerCtrl.updateCustomerSubmit(id)) {
+<!-- Build the form, adding an input for each field -->
+<!-- Note the label parameter -->
+
+@inputText(updateCustomerForm("firstname"), '_label ->"Firstname", 'class -> "form-control")
+		@helper.inputText(updateCustomerForm("lastname"), '_label ->"Lastname", 'class -> "form-control")
+		@helper.inputText(updateCustomerForm("address"), '_label ->"Address", 'class -> "form-control")
+		@helper.inputText(updateCustomerForm("street"), '_label ->"Street", 'class -> "form-control")
+		@helper.inputText(updateCustomerForm("city"), '_label ->"City", 'class -> "form-control")
+		@helper.inputText(updateCustomerForm("county"), '_label ->"County", 'class -> "form-control")
+		@helper.inputText(updateCustomerForm("email"), '_label ->"Email", 'class -> "form-control")
+		@helper.inputText(updateCustomerForm("phone_number"), '_label ->"Phone_number", 'class -> "form-control", 'type -> "number")
+
+		<!-- Add a submit button -->
+		<div class="actions">
+		<input type="submit" value="save" class="btn btn-primary">		
+			<a href="@routes.CustomerCtrl.listCustomer()" <button class="btn btn-warning" role="button">Cancel</button></a>	
+			</div>
+	</div>
+		
+		}
+}	
+	
+ 

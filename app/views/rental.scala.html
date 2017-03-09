@@ -1,0 +1,74 @@
+@(id: Long, cat:Long, categories: List[models.Category], outfits: List[models.Outfit], user: models.User)
+
+<!-- Pass page title and user on to main -->
+@main("Rent Outfits",user){
+
+
+<div class="row">
+
+  <div class="col-md-3">
+      <div class="list-group">
+				<!-- Start of For loop - For each c in categories add a link -->
+				<a href="@routes.RentalCtrl.rental(0)" class="list-group-item">All categories</a>
+			@for(c <- categories) {	
+          <a href="@routes.RentalCtrl.rental(c.id)" class="list-group-item">@c.name</a>
+			}
+		</div>
+  </div>
+
+	<div class="col-md-9">
+		<div class="row">
+			<!-- Search Form -->
+			<div id="actions">
+			 <form action="@routes.RentalCtrl.rental(cat)" method="GET">
+				<input type="search" id="searchbox" name="id" value="@id" placeholder="Search for outfit by ID" class="col-md-10 form-control">
+				<input type="submit" id="searchsubmit" value="Search by ID" class="btn-md btn-primary col-md-2 form-control">
+			 </form>
+			</div>
+		</div>
+		@if(flash.containsKey("success")) {
+			  <div class="alert alert-success">
+			      @flash.get("success")
+			  </div>
+		} 
+
+		<table class="table table-bordered table-hover table-condensed" id="tab">
+			<thead>
+			<!-- The header row-->
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Category</th>
+				<th>Size</th>
+				<th>Price</th>
+			</tr>
+			</thead>
+			<tbody>
+				<!-- Start of For loop - For each o in outfits add a row -->
+				@for(o <- outfits) {
+				
+				<tr>@if(o.available == true){
+					<!-- Display each outfit field value in a column -->
+					<td>@o.id</td>
+					<td>@o.colour</td>
+					<td>@o.category.name</td>
+					<td>@o.size</td>
+					<td>@o.price</td>				
+					<!-- rent outfit checkbox -->
+					<td><a href="@routes.ShoppingCtrl.addToBasket(o.id)"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>
+					}
+				</tr>
+				<!-- End of For loop -->}
+			</tbody>
+		</table>		
+		<div>
+			<a href="@routes.Application.options()" <button class="btn btn-primary">Cancel</button></a>
+		</div>
+	</div>
+</div>
+}
+				
+      
+
+
+

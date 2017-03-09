@@ -1,0 +1,83 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Default path will just redirect to the outfit list
+GET     /                           		controllers.Application.index
+
+GET		/options							controllers.Application.options	
+# Show a list of outfits - note optional parameter
+GET     /listOutfits                      		controllers.OutfitCtrl.listOutfits(cat: Long = 0)
+GET     /listOutfits/:cat                  		controllers.OutfitCtrl.listOutfits(cat: Long)
+
+# Add outfit
+GET     /addOutfit              				controllers.OutfitCtrl.create
+POST    /addOutfitSave                  		controllers.OutfitCtrl.save
+
+# Edit existing outfit
+# update a product
+GET			/updateOutfit/:id					controllers.OutfitCtrl.updateOutfit(id:Long)
+POST		/updateOutfitSubmit/:id				controllers.OutfitCtrl.updateOutfitSubmit(id:Long)
+
+# Delete a outfit
+GET     /delProduct/:id             			controllers.OutfitCtrl.delete(id:Long)
+
+# Display list of customers
+GET     /listCustomer               			controllers.CustomerCtrl.listCustomer()
+
+#Add a new customer
+GET		/addCustomer							controllers.CustomerCtrl.addCustomer()
+POST	/addCustomerSubmit						controllers.CustomerCtrl.addCustomerSubmit()
+
+#Update existing customer
+# Delete existing customer
+GET		/delCustomer/:id						controllers.CustomerCtrl.deleteCustomer(id:Long)
+GET		/updateCustomer/:id						controllers.CustomerCtrl.updateCustomer(id:Long)
+POST	/updateCustomer/:id						controllers.CustomerCtrl.updateCustomerSubmit(id:Long)
+
+#Login
+GET		/login								controllers.LoginCtrl.login()
+POST	/login								controllers.LoginCtrl.authenticate()
+GET     /logout                     		controllers.LoginCtrl.logout()
+
+#rental
+GET     /rentalCustomer               	controllers.RentalCtrl.rentalCustomer()
+GET     /rental		                		controllers.RentalCtrl.rental(cat:Long ?= 0, id:Long ?=0)
+GET     /showBasket                		controllers.ShoppingCtrl.showBasket()
+GET     /addBasketCustomer/:id          controllers.ShoppingCtrl.addBasketCustomer(id: Long)
+GET     /addToBasket/:id           controllers.ShoppingCtrl.addToBasket(id: Long)
+
+GET     /removeOne/:itemId         controllers.ShoppingCtrl.removeOne(itemId: Long)
+GET     /emptyBasket               controllers.ShoppingCtrl.emptyBasket()
+GET     /placeOrder                controllers.ShoppingCtrl.placeOrder()
+GET     /viewOrder/:id             controllers.ShoppingCtrl.viewOrder(id: Long)
+GET     /listOrders               controllers.ShoppingCtrl.listOrders(cat: Long = 0)
+GET     /listOrders/:cat            controllers.ShoppingCtrl.listOrders(cat: Long)
+GET     /returns               	controllers.ShoppingCtrl.returns(cat: Long = 0)
+GET     /returns/:cat            controllers.ShoppingCtrl.returns(cat: Long)
+
+
+# update a product
+GET			/returnOutfit/:id					controllers.ShoppingCtrl.returnOutfit(id:Long)
+POST		/returnOutfitSubmit/:id				controllers.ShoppingCtrl.returnOutfitSubmit(id:Long)
+GET			/confirmReturn/:id					controllers.ShoppingCtrl.calcRefund(id:Long)
+
+# Display list of users
+GET     /listUsers            			controllers.CustomerCtrl.listUsers()
+
+#Admin
+GET		/addStaff					controllers.AdminCtrl.addStaff()
+POST 	/addStaffSubmit 			controllers.AdminCtrl.addStaffSubmit()
+
+GET		/addManager					controllers.AdminCtrl.addManager()
+POST 	/addManagerSubmit 			controllers.AdminCtrl.addManagerSubmit()
+
+GET		/delUser/:id						controllers.AdminCtrl.deleteUser(id:String)
+GET		/updateUser/:id						controllers.AdminCtrl.updateUser(id:String)
+POST	/updateUser/:id						controllers.AdminCtrl.updateUserSubmit(id:String)
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               			controllers.Assets.at(path="/public", file)
+GET     /assets/*file               			controllers.Assets.versioned(path="/public", file: Asset)
